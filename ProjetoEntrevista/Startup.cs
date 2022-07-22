@@ -1,6 +1,5 @@
 ﻿using ProjetoEntrevista.Data; //importando minha classe conexão da pasta data
 using ProjetoEntrevista.Repositorio;
-using ProjetoEntrevista.
 using Microsoft.EntityFrameworkCore;
 
 namespace ProjetoEntrevista
