@@ -16,9 +16,9 @@ namespace ProjetoEntrevista
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddEntityFrameworkSqlServer()
-                .AddDbContext<BancoDeDados>(o => o.UseSqlServer(Configuration.GetConnectionString("DataBase"))); //Adicionando serviço de banco de dados informando minha conexao na pasta Data. 
-            services.AddScoped<IContatoRepositorio, ContatoRepositorio>();
+            services.AddEntityFrameworkSqlServer() //Adicionando na inicialização do projeto o service 'Entity' que será responsável por ativar o ambinte de banco dadados no projeto
+                .AddDbContext<BancoDeDados>(o => o.UseSqlServer(Configuration.GetConnectionString("DataBase"))); //AddDbContext<BancoDeDados> faz referência da minha classe que esta na pasta DATA... Configuration.GetConnectionString acessa e colhe os dados (server, user, database etc... ) no indice "DataBase" json em appsettings.json (conhecido como .env) 
+            services.AddScoped<IContatoRepositorio, ContatoRepositorio>();//A services.AddScoped configura que toda vez que a IContatoRepositorio for chamada será feita "injeção de dependência" em  ContatoRepositorio.                     
         }
 
         public void Configure(WebApplication app, IWebHostEnvironment environment)
