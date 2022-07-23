@@ -34,7 +34,7 @@ namespace ProjetoEntrevista.Controllers
         }
 
         [HttpPost]
-        public IActionResult Criar(ModelContato contato)
+        public IActionResult Cadastrar(ModelContato contato)
         {
             _contatoRepositorio.Adicionar(contato);
             return RedirectToAction("Index"); //Rota para retornar para página inicial do contato
