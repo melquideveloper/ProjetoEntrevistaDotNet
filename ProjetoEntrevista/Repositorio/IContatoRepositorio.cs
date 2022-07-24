@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace ProjetoEntrevista.Repositorio
 {
+
     public interface IContatoRepositorio
     {
         ModelContato Adicionar(ModelContato contato);
+
+        List<ModelContato> BuscarTodos();
     }
 }

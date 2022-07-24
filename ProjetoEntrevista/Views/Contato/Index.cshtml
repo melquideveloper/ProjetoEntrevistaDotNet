@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<ModelContato>  //Recebe o List<ModelContato> enviado pela ContatoController através do método index... obs. somente pode ser carregado 1 model por view
+@{
     ViewData["Title"] = "Lista de Contato"; 
 }
  <div class="text-center">
@@ -18,42 +19,25 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td></td>
-          <td>
-             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-               <a asp-controller="Contato" asp-action="Editar" class="btn btn-info">Editar</a>
-               <a asp-controller="Contato" asp-action="ApagarConf" class="btn btn-danger">Apagar</a>       
-            </div>
-          </td>      
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td></td>
-          <td>
-             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-              <a asp-controller="Contato" asp-action="Editar" class="btn btn-info">Editar</a>
-              <a asp-controller="Contato" asp-action="ApagarConf" class="btn btn-danger">Apagar</a>      
-            </div>
-          </td>     
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>David</td>
-          <td>Thornton</td>
-          <td></td>
-          <td>
-             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-              <a asp-controller="Contato" asp-action="Editar" class="btn btn-info">Editar</a>
-              <a asp-controller="Contato" asp-action="ApagarConf" class="btn btn-danger">Apagar</a>      
-            </div>
-          </td>     
-        </tr>
+            @if(Model != null && Model.Any()) //verifico se o model carregado na linha 1 possui dados 
+            {
+                foreach (ModelContato contato in Model)
+                {
+                    <tr>
+                      <th scope="row">@contato.Id</th>
+                      <td>@contato.Nome</td>
+                      <td>@contato.Celular</td>
+                      <td></td>
+                      <td>
+                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">                            
+                           <a asp-controller="Contato" asp-route-id="@contato.Id" asp-action="Editar" class="btn btn-info">Editar</a>   <! -- O atributo 'asp-route-id' contendo o  "contato.Id" é configurado para quando acionar o editar enviar o ID do contato em questão -->
+                           <a asp-controller="Contato" asp-route-id="@contato.Id" asp-action="ApagarConf" class="btn btn-danger">Apagar</a>       
+                        </div>
+                      </td>      
+                    </tr>                    
+                }
+            } 
+             <! -- O "asp-controller" inidicar na tag 'a' qual o controlador recebe a requisição, e o "asp-action" o método lá presente que ira receber a solicitação  -->
       </tbody>
     </table>
 
