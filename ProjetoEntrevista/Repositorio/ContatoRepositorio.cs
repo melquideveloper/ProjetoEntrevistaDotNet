@@ -31,5 +31,11 @@ namespace ProjetoEntrevista.Repositorio
             _bancoDeDados.SaveChanges(); //nossa constante _bancoDeDados pelo método .SaveChanges da o COMMIT  equivalente ao 'pgquery' no POSTGREE, para de fato grava no banco de dados
             return contato;
         }
+
+        public List<ModelContato> BuscarTodos() //Método responsável por buscar todos os contatos no banco 
+        {
+           return _bancoDeDados.Contatos.ToList(); // a constante _bancoDeDados é instacia criada aqui no contrutor que acessa o atributo Contatos já carregado pela migrations
+        }
+   
     }
 }

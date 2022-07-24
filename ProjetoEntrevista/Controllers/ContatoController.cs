@@ -19,7 +19,8 @@ namespace ProjetoEntrevista.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            List<ModelContato> contatos = _contatoRepositorio.BuscarTodos(); // Declaro a variável 'contatos' do tipo 'List<ModelContato>' que equivale a um array e pela minha constante '_contatoRepositorio' acesso método 'BuscarTodos()' que vai buscar no banco pela Model meus contatos
+            return View(contatos); //Mando meus 'cantatos' já carregados acima para minha View 'Index'
         }
 
         /***
@@ -45,11 +46,11 @@ namespace ProjetoEntrevista.Controllers
 
         /**
          * Método responsável por adicionar um contato ao banco.
-         * A constante _contatoRepositorio que é alimentado pelo construtor aqui na linha 11
+         * A constante _contatoRepositorio que é alimentada no construtor dessa classe
          * recebe a instância da classe 'IContatoRepositorio'.
          * E acessa o método para executar as ações.
          */
-        [HttpPost]
+        [HttpPost]  //esse método POST esta em link com a view Cadastrar na tag  <form asp-controller="Contato" asp-action="Cadastrar" method="post">
         public IActionResult Cadastrar(ModelContato contato)
         {
             _contatoRepositorio.Adicionar(contato);
