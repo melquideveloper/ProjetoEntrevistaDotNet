@@ -61,15 +61,33 @@ namespace ProjetoEntrevista.Controllers
         [HttpPost]  //esse método POST esta em link com a view Cadastrar na tag  <form asp-controller="Contato" asp-action="Cadastrar" method="post">
         public IActionResult Cadastrar(ModelContato contato)
         {
-            _contatoRepositorio.Adicionar(contato);
-            return RedirectToAction("Index"); //RedirectToAction método para retornar para rota Index definida em View contato
+            try
+            {
+                if (ModelState.IsValid)  //Essé método ModelState.IsValid é para confirmar o DATA_annotation iniciado na ModelContato da pasta Model que valida lá o tipo de dados, ex. email, telefone ...
+                {
+                    _contatoRepositorio.Adicionar(contato);
+                    return RedirectToAction("Index"); //RedirectToAction método para retornar para rota Index definida em View contato
+                }
+
+                return View(contato);
+
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+           
         }
 
         [HttpPost]  
         public IActionResult Alterar(ModelContato contato)
         {
-            _contatoRepositorio.Alterar(contato);
-            return RedirectToAction("Index"); //RedirectToAction método para retornar para rota Index definida em View contato
+            if (ModelState.IsValid)  //Essé método ModelState.IsValid é para confirmar o DATA_annotation iniciado na ModelContato da pasta Model que valida lá o tipo de dados, ex. email, telefone ...
+            {
+                _contatoRepositorio.Alterar(contato);
+                return RedirectToAction("Index"); //RedirectToAction método para retornar para rota Index definida em View contato
+            }
+            return View("Editar", contato); //nesse caso o nome da View que por padrão seria o mesmo do método nesse bloco (public IActionResult 'Alterar') não existe, po isso apontei qual View View("Editar" ... e o parametro ...  contato);
         }
     }
 }

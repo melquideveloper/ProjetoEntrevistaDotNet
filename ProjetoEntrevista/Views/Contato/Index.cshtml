@@ -26,8 +26,8 @@
                     <tr>
                       <th scope="row">@contato.Id</th>
                       <td>@contato.Nome</td>
-                      <td>@contato.Celular</td>
-                      <td></td>
+                      <td>@contato.Email</td>
+                      <td>@contato.Celular</td>                     
                       <td>
                          <div class="btn-group" role="group" aria-label="Basic mixed styles example">                            
                            <a asp-controller="Contato" asp-route-id="@contato.Id" asp-action="Editar" class="btn btn-info">Editar</a>   <!-- ** O atributo 'asp-route-id' contendo o  "contato.Id" é configurado para quando aperta no botão editar enviar o ID do contato em questão -->
