@@ -4,6 +4,24 @@
 }
  <div class="text-center">
 
+     @if(TempData["MensagemSucesso"]!= null)
+    {
+         <div class="alert alert-success" role="alert">
+             <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+             @TempData["MensagemSucesso"]
+         </div>
+    }
+
+      @if(TempData["MensagemErro"]!= null)
+    {
+        <div class="alert alert-danger" role="alert">
+         <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+          @TempData["MensagemErro"]
+        </div>
+    
+    }
+    <br />
+
     <h1 class="display-4">Lista de Cliente</h1>
     <br/>
     <a asp-controller="Contato" asp-action="Cadastrar" class="btn btn-outline-primary" id="newcontact">Novo Contato</a>  <!-- O atributo asp-controller informa quem é Controller que receberá a requisção da ancora <a> e o   asp-action="Cadastrar! o método -->

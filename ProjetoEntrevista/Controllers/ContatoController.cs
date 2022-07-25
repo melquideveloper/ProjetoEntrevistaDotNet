@@ -47,8 +47,18 @@ namespace ProjetoEntrevista.Controllers
 
         public IActionResult Apagar(int id)
         {
-            _contatoRepositorio.Apagar(id);
-            return RedirectToAction("Index");
+            try //O try, tentativa de execução do bloco abaixo 
+            {
+                _contatoRepositorio.Apagar(id);
+                TempData["MensagemSucesso"] = "Contato apagado com sucesso"; //Essa variável TempData nativa, será acessada na View para que possa exibir a mensagem de sucesso ou de erro.
+                return RedirectToAction("Index");
+            }
+            catch(System.Exception erro)
+            {               
+                TempData["MensagemErro"] = $"Erro ao tentar apagar registro. Tente Novamente! Detalhe: {erro.Message}"; //Essa variável TempData nativa, será acessada na View para que possa exibir a mensagem de sucesso ou de erro.
+                return RedirectToAction("Index");
+            }
+             
         }
 
 
@@ -61,20 +71,23 @@ namespace ProjetoEntrevista.Controllers
         [HttpPost]  //esse método POST esta em link com a view Cadastrar na tag  <form asp-controller="Contato" asp-action="Cadastrar" method="post">
         public IActionResult Cadastrar(ModelContato contato)
         {
-            try
+            try //O try, tentativa de execução do bloco abaixo 
             {
                 if (ModelState.IsValid)  //Essé método ModelState.IsValid é para confirmar o DATA_annotation iniciado na ModelContato da pasta Model que valida lá o tipo de dados, ex. email, telefone ...
                 {
                     _contatoRepositorio.Adicionar(contato);
+                    TempData["MensagemSucesso"] = "Contato cadastrado com sucesso"; //Essa variável TempData nativa, será acessada na View para que possa exibir a mensagem de sucesso ou de erro.
                     return RedirectToAction("Index"); //RedirectToAction método para retornar para rota Index definida em View contato
                 }
 
                 return View(contato);
 
             }
-            catch (System.Exception)
+            catch (System.Exception erro) //O exception trás os erros da tentativa mal sussedida do try, e então eu coloco a mensagem de erro variável erro
             {
-                throw;
+                TempData["MensagemErro"] = $"Erro! Não foi possivél cadastrar o contato, tente novamente. Detalhe: {erro.Message}"; // o $ no início da string é para possibilitar a concatenação com a variável {erro.Message} 
+                return RedirectToAction("Index");
+
             }
            
         }
