@@ -63,7 +63,7 @@ BenchmarkDotNet.Artifacts/
 project.lock.json
 project.fragment.lock.json
 artifacts/
-ProjetoEntrevista/appsettings.json
+/ProjetoEntrevista/ProjetoEntrevista/appsettings.json
 
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
