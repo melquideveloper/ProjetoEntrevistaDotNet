@@ -32,9 +32,48 @@ namespace ProjetoEntrevista.Repositorio
             return contato;
         }
 
+        public ModelContato Alterar(ModelContato contato)
+        {
+            ModelContato contatoBanco = BuscarContato(contato.Id); //Primeiro busco contato no banco 
+
+            if (contatoBanco == null) throw new System.Exception("Registro não localizado. Erro ao atualiar!");
+
+            /**
+             * Depois realizo a preparação substituindo o valor dos dados no banco pelo valor vindo do usuário.
+             */
+            contatoBanco.Nome = contato.Nome;
+            contatoBanco.Email = contato.Email;
+            contatoBanco.Celular = contato.Celular;
+
+            //Rodo no comando update as informações prontas
+            _bancoDeDados.Contatos.Update(contatoBanco);
+            //Depois confirmo o commit
+            _bancoDeDados.SaveChanges();
+
+            return contatoBanco;
+
+        }
+
         public List<ModelContato> BuscarTodos() //Método responsável por buscar todos os contatos no banco 
         {
            return _bancoDeDados.Contatos.ToList(); // a constante _bancoDeDados é instacia criada aqui no contrutor que acessa o atributo Contatos já carregado pela migrations
+        }
+
+        public ModelContato BuscarContato(int id)
+        {           
+            return _bancoDeDados.Contatos.FirstOrDefault(x => x.Id == id);  // Busca primeira ou única ocorrência (FirstOrDefault) com ID informado, no banco de dados. onde x =>   x.Id (banco) seja igual ao id vindo do atributo (int id)
+        }
+
+        public bool Apagar(int id)
+        {
+            ModelContato contatoBanco = BuscarContato(id);
+            if (contatoBanco == null) throw new System.Exception("Erro em remover o registro. Contato não encontrado");
+
+            _bancoDeDados.Contatos.Remove(contatoBanco);
+            _bancoDeDados.SaveChanges();
+
+            return true;
+            
         }
    
     }

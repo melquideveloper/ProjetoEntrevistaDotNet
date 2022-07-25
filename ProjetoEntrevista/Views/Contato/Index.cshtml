@@ -6,7 +6,7 @@
 
     <h1 class="display-4">Lista de Cliente</h1>
     <br/>
-    <a asp-controller="Contato" asp-action="Cadastrar" class="btn btn-outline-primary" id="newcontact">Novo Contato</a>
+    <a asp-controller="Contato" asp-action="Cadastrar" class="btn btn-outline-primary" id="newcontact">Novo Contato</a>  <!-- O atributo asp-controller informa quem é Controller que receberá a requisção da ancora <a> e o   asp-action="Cadastrar! o método -->
     <br/>
      <table class="table">
       <thead>
@@ -30,14 +30,14 @@
                       <td></td>
                       <td>
                          <div class="btn-group" role="group" aria-label="Basic mixed styles example">                            
-                           <a asp-controller="Contato" asp-route-id="@contato.Id" asp-action="Editar" class="btn btn-info">Editar</a>   <! -- O atributo 'asp-route-id' contendo o  "contato.Id" é configurado para quando acionar o editar enviar o ID do contato em questão -->
+                           <a asp-controller="Contato" asp-route-id="@contato.Id" asp-action="Editar" class="btn btn-info">Editar</a>   <!-- ** O atributo 'asp-route-id' contendo o  "contato.Id" é configurado para quando aperta no botão editar enviar o ID do contato em questão -->
                            <a asp-controller="Contato" asp-route-id="@contato.Id" asp-action="ApagarConf" class="btn btn-danger">Apagar</a>       
                         </div>
                       </td>      
                     </tr>                    
                 }
             } 
-             <! -- O "asp-controller" inidicar na tag 'a' qual o controlador recebe a requisição, e o "asp-action" o método lá presente que ira receber a solicitação  -->
+             <!-- ** O "asp-controller" inidicar na tag 'a' qual o controlador recebe a requisição, e o "asp-action" o método lá presente que ira receber a solicitação  -->
       </tbody>
     </table>
 

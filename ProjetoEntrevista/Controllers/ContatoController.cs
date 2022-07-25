@@ -33,14 +33,22 @@ namespace ProjetoEntrevista.Controllers
             return View();
         }
 
-        public IActionResult Editar()
+        public IActionResult Editar(int id)
         {
-            return View();
+            ModelContato contato = _contatoRepositorio.BuscarContato(id);
+            return View(contato);
         }
 
-        public IActionResult ApagarConf()
+        public IActionResult ApagarConf(int id)
         {
-            return View();
+            ModelContato contato = _contatoRepositorio.BuscarContato(id);
+            return View(contato);
+        }
+
+        public IActionResult Apagar(int id)
+        {
+            _contatoRepositorio.Apagar(id);
+            return RedirectToAction("Index");
         }
 
 
@@ -54,6 +62,13 @@ namespace ProjetoEntrevista.Controllers
         public IActionResult Cadastrar(ModelContato contato)
         {
             _contatoRepositorio.Adicionar(contato);
+            return RedirectToAction("Index"); //RedirectToAction método para retornar para rota Index definida em View contato
+        }
+
+        [HttpPost]  
+        public IActionResult Alterar(ModelContato contato)
+        {
+            _contatoRepositorio.Alterar(contato);
             return RedirectToAction("Index"); //RedirectToAction método para retornar para rota Index definida em View contato
         }
     }
