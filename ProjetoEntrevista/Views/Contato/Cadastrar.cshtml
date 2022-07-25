@@ -19,9 +19,14 @@
           </div>          
           <div class="col-md-12">           
             <div class="col-md-12">
-              <label for="validationDefaultUsername" class="form-label">Celular</label>              
-              <input type="text" asp-for="Celular" class="form-control">      
+                <label for="validationDefaultUsername" class="form-label">Celular</label>              
+            <input type="text" asp-for="Celular" minlength="11" class="form-control">      
              @Html.ValidationMessageFor(x=>x.Celular)
+
+              <!--<input type="text" class="form-control" name="WatzUsu" id="WatzUsu" maxlength="12" onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode)))
+                                return true;
+                            else
+                                return false;" placeholder="71 99999 9999" required>-->
             </div>             
           </div>
           <br />        
