@@ -9,18 +9,19 @@
         <form asp-controller="Contato" asp-action="Cadastrar" method="post">   <!-- O atributo asp-controller informa quem é Controller que receberá o submit o   asp-action = "Cadastrar"" o método que iratratar a requisição sobre o método method="post" POST -->       
           <div class="col-md-12">
             <label>Nome</label>
-            <input type="text" asp-for="Nome" class="form-control" id="">
-            @Html.ValidationMessageFor(x=>x.Nome)  <!--Todo método Html.ValidationMessageFor() aqui faz referência ao DATA_annotation do seu campo espeficifo na classe ModelContato para validação dos campos-->
+            <input type="text" asp-for="Nome" class="form-control" id="" onkeypress="if (isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;">
+            @Html.ValidationMessageFor(x=>x.Nome)  <!--Todo método Html.ValidationMessageFor() aqui, fazEM referência ao DATA_annotation do seu campo espeficifo na classe ModelContato para validação dos campos-->
           </div>
           <div class="col-md-12">
             <label>Email</label>
-            <input type="text" asp-for="Email" class="form-control" id="" > 
+            <input type="text" asp-for="Email" class="form-control" id="emailCadastro"  > 
+           <span id="errorEmail" style="display:none;color:red;">Digite email válido</span>
            @Html.ValidationMessageFor(x=>x.Email)
           </div>          
           <div class="col-md-12">           
             <div class="col-md-12">
                 <label for="validationDefaultUsername" class="form-label">Celular</label>              
-            <input type="text" asp-for="Celular" minlength="11" maxlength="11" class="form-control" onkeypress="  if (!isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;  ">      
+            <input type="text" asp-for="Celular" minlength="11" maxlength="11" class="form-control" onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;">      
              @Html.ValidationMessageFor(x=>x.Celular)
 
               <!--<input type="text" class="form-control" name="WatzUsu" id="WatzUsu" maxlength="12" onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode)))

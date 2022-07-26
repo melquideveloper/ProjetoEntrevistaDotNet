@@ -13,7 +13,7 @@
 
               <div class="col-md-12">
                 <label for="validationDefault01" class="form-label">Nome</label>
-                <input type="text" asp-for="Nome" class="form-control" >
+                <input type="text" asp-for="Nome" class="form-control" onkeypress="if (isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;"> <!-- O atributo onkeypress valida somente entrada de dados do tipo A-Z a-z -->
                 @Html.ValidationMessageFor(x=>x.Nome)
               </div>
               <div class="col-md-12">
@@ -23,7 +23,7 @@
               </div>
               <div class="col-md-12">
                  <label for="validationDefaultUsername" class="form-label">Celular</label>
-                  <input type="text" asp-for="Celular" class="form-control">
+                  <input type="text" asp-for="Celular" minlength="11" maxlength="11" class="form-control" onkeypress="  if (!isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;"><!--O atributo onkeypress valida somente entrada de dados do tipo 0-9 -->
                   @Html.ValidationMessageFor(x=>x.Celular)
               </div>
                 <br />
