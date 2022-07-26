@@ -95,12 +95,25 @@ namespace ProjetoEntrevista.Controllers
         [HttpPost]  
         public IActionResult Alterar(ModelContato contato)
         {
-            if (ModelState.IsValid)  //Essé método ModelState.IsValid é para confirmar o DATA_annotation iniciado na ModelContato da pasta Model que valida lá o tipo de dados, ex. email, telefone ...
+
+            try //O try, tentativa de execução do bloco abaixo 
             {
-                _contatoRepositorio.Alterar(contato);
-                return RedirectToAction("Index"); //RedirectToAction método para retornar para rota Index definida em View contato
+                if (ModelState.IsValid)  //Essé método ModelState.IsValid é para confirmar o DATA_annotation iniciado na ModelContato da pasta Model que valida lá o tipo de dados, ex. email, telefone ...
+                {
+                    _contatoRepositorio.Alterar(contato);
+                    TempData["MensagemSucesso"] = "Contato atualizado com sucesso"; //Essa variável TempData nativa, será acessada na View para que possa exibir a mensagem de sucesso ou de erro.
+                    return RedirectToAction("Index"); //RedirectToAction método para retornar para rota Index definida em View contato
+                }
+                return View("Editar", contato); //nesse caso o nome da View que por padrão seria o mesmo do método nesse bloco (public IActionResult 'Alterar') não existe, po isso apontei qual View View("Editar" ... e o parametro ...  contato);
             }
-            return View("Editar", contato); //nesse caso o nome da View que por padrão seria o mesmo do método nesse bloco (public IActionResult 'Alterar') não existe, po isso apontei qual View View("Editar" ... e o parametro ...  contato);
+            catch (System.Exception erro)
+            {
+                TempData["MensagemErro"] = $"Erro ao tentar atualizar registro. Tente Novamente! Detalhe: {erro.Message}"; //Essa variável TempData nativa, será acessada na View para que possa exibir a mensagem de sucesso ou de erro.
+                return RedirectToAction("Index");
+            }
+
+
+            
         }
     }
 }
