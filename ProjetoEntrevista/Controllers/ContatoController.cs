@@ -19,7 +19,7 @@ namespace ProjetoEntrevista.Controllers
 
         public IActionResult Index()
         {
-            List<ModelContato> contatos = _contatoRepositorio.BuscarTodos(); // Declaro a variável 'contatos' do tipo 'List<ModelContato>' que equivale a um array e pela minha constante '_contatoRepositorio' acesso método 'BuscarTodos()' que vai buscar no banco pela Model meus contatos
+            List<ModelCliente> contatos = _contatoRepositorio.BuscarTodos(); // Declaro a variável 'contatos' do tipo 'List<ModelContato>' que equivale a um array e pela minha constante '_contatoRepositorio' acesso método 'BuscarTodos()' que vai buscar no banco pela Model meus contatos
             return View(contatos); //Mando meus 'cantatos' já carregados acima para minha View 'Index'
         }
 
@@ -35,13 +35,13 @@ namespace ProjetoEntrevista.Controllers
 
         public IActionResult Editar(int id)
         {
-            ModelContato contato = _contatoRepositorio.BuscarContato(id);
+            ModelCliente contato = _contatoRepositorio.BuscarContato(id);
             return View(contato);
         }
 
         public IActionResult ApagarConf(int id)
         {
-            ModelContato contato = _contatoRepositorio.BuscarContato(id);
+            ModelCliente contato = _contatoRepositorio.BuscarContato(id);
             return View(contato);
         }
 
@@ -69,7 +69,7 @@ namespace ProjetoEntrevista.Controllers
          * E acessa o método para executar as ações.
          */
         [HttpPost]  //esse método POST esta em link com a view Cadastrar na tag  <form asp-controller="Contato" asp-action="Cadastrar" method="post">
-        public IActionResult Cadastrar(ModelContato contato)
+        public IActionResult Cadastrar(ModelCliente contato)
         {
             try //O try, tentativa de execução do bloco abaixo 
             {
@@ -93,7 +93,7 @@ namespace ProjetoEntrevista.Controllers
         }
 
         [HttpPost]  
-        public IActionResult Alterar(ModelContato contato)
+        public IActionResult Alterar(ModelCliente contato)
         {
 
             try //O try, tentativa de execução do bloco abaixo 

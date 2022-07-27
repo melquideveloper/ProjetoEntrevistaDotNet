@@ -23,7 +23,7 @@ namespace ProjetoEntrevista.Repositorio
             _bancoDeDados = bancoDeDados;
         }
 
-        public ModelContato Adicionar(ModelContato contato)
+        public ModelCliente Adicionar(ModelCliente contato)
         {
             //Gravar no banco de dados
             //throw new NotImplementedException();
@@ -32,9 +32,9 @@ namespace ProjetoEntrevista.Repositorio
             return contato;
         }
 
-        public ModelContato Alterar(ModelContato contato)
+        public ModelCliente Alterar(ModelCliente contato)
         {
-            ModelContato contatoBanco = BuscarContato(contato.Id); //Primeiro busco contato no banco 
+            ModelCliente contatoBanco = BuscarContato(contato.Id); //Primeiro busco contato no banco 
 
             if (contatoBanco == null) throw new System.Exception("Registro não localizado. Erro ao atualiar!");
 
@@ -54,19 +54,19 @@ namespace ProjetoEntrevista.Repositorio
 
         }
 
-        public List<ModelContato> BuscarTodos() //Método responsável por buscar todos os contatos no banco 
+        public List<ModelCliente> BuscarTodos() //Método responsável por buscar todos os contatos no banco 
         {
            return _bancoDeDados.Contatos.ToList(); // a constante _bancoDeDados é instacia criada aqui no contrutor que acessa o atributo Contatos já carregado pela migrations
         }
 
-        public ModelContato BuscarContato(int id)
+        public ModelCliente BuscarContato(int id)
         {           
             return _bancoDeDados.Contatos.FirstOrDefault(x => x.Id == id);  // Busca primeira ou única ocorrência (FirstOrDefault) com ID informado, no banco de dados. onde x =>   x.Id (banco) seja igual ao id vindo do atributo (int id)
         }
 
         public bool Apagar(int id)
         {
-            ModelContato contatoBanco = BuscarContato(id);
+            ModelCliente contatoBanco = BuscarContato(id);
             if (contatoBanco == null) throw new System.Exception("Erro em remover o registro. Contato não encontrado");
 
             _bancoDeDados.Contatos.Remove(contatoBanco);
