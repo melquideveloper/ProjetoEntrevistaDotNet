@@ -1,4 +1,4 @@
-﻿@model List<ModelContato>  //Recebe o List<ModelContato> enviado pela ContatoController através do método index... obs. somente pode ser carregado 1 model por view
+﻿@model List<ModelCliente>  //Recebe o List<ModelContato> enviado pela ContatoController através do método index... obs. somente pode ser carregado 1 model por view
 @{
     ViewData["Title"] = "Lista de Contato"; 
 }
@@ -27,7 +27,7 @@
     <a asp-controller="Contato" asp-action="Cadastrar" class="btn btn-outline-primary" id="newcontact">Novo Cadastro</a>  <!-- O atributo asp-controller informa quem é Controller que receberá a requisção da ancora <a> e o   asp-action="Cadastrar! o método -->
     <br/>
     <br/>
-     <table class="table">
+     <table class="table" id="TableCliente">
       <thead>
         <tr>
           <th scope="col">ID</th>
@@ -40,7 +40,7 @@
       <tbody>
             @if(Model != null && Model.Any()) //verifico se o model carregado na linha 1 possui dados 
             {
-                foreach (ModelContato contato in Model)
+                foreach (ModelCliente contato in Model)
                 {
                     <tr>
                       <th scope="row">@contato.Id</th>

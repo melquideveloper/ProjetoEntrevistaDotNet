@@ -27,6 +27,7 @@ namespace ProjetoEntrevista.Data
          * dessa forma será acessado os atributos e métodos de ModelContato, nescessário para ser criado a tabela no banco de dados pela migration 
          * e realizar manipulação no banco
          */
-        public DbSet<ModelContato> Contatos { get; set; } //Tabela no banco de dados terá o nome de Contatos... e tabém essa variável contato será carregar no projeto métodos como INSERT, UPDATE, DELETE quando insânciada aqui no projeto
+        public DbSet<ModelCliente> Contatos { get; set; } //Tabela no banco de dados terá o nome de Contatos... e tabém essa variável contato será carregar no projeto métodos como INSERT, UPDATE, DELETE quando insânciada aqui no projeto
+        public DbSet<ModelUsuario> Usuarios { get; set; } //Tabela no banco de dados terá o nome de Usuarios... e tabém essa variável usuarios será carregar no projeto para invocar os métodos como INSERT, UPDATE, DELETE quando insânciada aqui no projeto
     }
 }

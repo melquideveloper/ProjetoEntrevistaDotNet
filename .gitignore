@@ -63,7 +63,7 @@ BenchmarkDotNet.Artifacts/
 project.lock.json
 project.fragment.lock.json
 artifacts/
-/ProjetoEntrevista/ProjetoEntrevista/appsettings.json
+ProjetoEntrevista/appsettings.json
 
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
@@ -75,7 +75,7 @@ StyleCopReport.xml
 *_i.c
 *_p.c
 *_h.h
-*.ilk
+*.ilk 
 *.meta
 *.obj
 *.iobj
