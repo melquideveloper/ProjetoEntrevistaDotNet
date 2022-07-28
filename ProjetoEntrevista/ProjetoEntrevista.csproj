@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Compile Remove="Models\ContatoModel.cs" />
+    <Compile Remove="Views\Usuario\Cadastrar.cs" />
   </ItemGroup>
 
   <ItemGroup>

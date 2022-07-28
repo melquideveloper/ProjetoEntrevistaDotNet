@@ -9,7 +9,7 @@
         <form asp-controller="Contato" asp-action="Cadastrar" method="post">   <!-- O atributo asp-controller informa quem é Controller que receberá o submit o   asp-action = "Cadastrar"" o método que iratratar a requisição sobre o método method="post" POST -->       
           <div class="col-md-12">
             <label>Nome</label>
-            <input type="text" asp-for="Nome" class="form-control" id="" >
+            <input type="text" asp-for="Nome" class="form-control" id="" > <!-- O atributo asp-for indica que esse inptu nome sera enviado no submit com esse indice descrito -->
             @Html.ValidationMessageFor(x=>x.Nome)  <!--Todo método Html.ValidationMessageFor() aqui, fazEM referência ao DATA_annotation do seu campo espeficifo na classe ModelContato para validação dos campos-->
           </div>
           <div class="col-md-12">

@@ -1,0 +1,49 @@
+﻿@model List<ModelUsuario>
+@{
+    ViewData["Title"] = "Lista de Usuário"; 
+}
+ <div class="text-center">
+
+    <h1 class="display-4">Usuários</h1>
+    <br/>
+    <a asp-controller="Usuario" asp-action="Cadastrar" class="btn btn-outline-primary" id="newcontact">Novo Cadastro</a>  <!-- O atributo asp-controller informa quem é Controller que receberá a requisção da ancora <a> e o   asp-action="Cadastrar! o método -->
+    <br/>
+    <br/>
+     <table class="table" id="TableUsuario">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Login</th>
+          <th scope="col">Email</th>
+          <th scope="col">Perfil</th>
+           <th scope="col">Cadastro</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+            @if(Model != null && Model.Any()) //verifico se o model carregado na linha 1 possui dados 
+            {
+                foreach (ModelUsuario user in Model)
+                {
+                    <tr>
+                      <th scope="row">@user.Id</th>
+                      <td>@user.Name</td>
+                      <td>@user.Login</td>
+                      <td>@user.Email</td> 
+                      <td>@user.Perfil</td>  
+                      <td>@user.DataCadastro</td>                  
+                      <td>
+                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">                            
+                           <a asp-controller="user" asp-route-id="@user.Id" asp-action="Editar" class="btn btn-info">Editar</a>   <!-- ** O atributo 'asp-route-id' contendo o  "contato.Id" é configurado para quando aperta no botão editar enviar o ID do contato em questão -->
+                           <a asp-controller="user" asp-route-id="@user.Id" asp-action="ApagarConf" class="btn btn-danger">Apagar</a>       
+                        </div>
+                      </td>      
+                    </tr>                    
+                }
+            } 
+             <!-- ** O "asp-controller" inidicar na tag 'a' qual o controlador recebe a requisição, e o "asp-action" o método lá presente que ira receber a solicitação  -->
+      </tbody>
+    </table>
+
+</div>
