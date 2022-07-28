@@ -27,6 +27,7 @@ namespace ProjetoEntrevista.Repositorio
         {
             //Gravar no banco de dados
             //throw new NotImplementedException();
+            contato.DataCadastro = DateTime.Now;
             _bancoDeDados.Contatos.Add(contato);  //nossa constante _bancoDeDados pelo método .Add "prepara" o INSERT NO BANCO DE DADOS com atributo recebido contato da calsse ModelContato
             _bancoDeDados.SaveChanges(); //nossa constante _bancoDeDados pelo método .SaveChanges da o COMMIT  equivalente ao 'pgquery' no POSTGREE, para de fato grava no banco de dados
             return contato;
@@ -60,8 +61,9 @@ namespace ProjetoEntrevista.Repositorio
         }
 
         public ModelCliente BuscarContato(int id)
-        {           
+        {
             return _bancoDeDados.Contatos.FirstOrDefault(x => x.Id == id);  // Busca primeira ou única ocorrência (FirstOrDefault) com ID informado, no banco de dados. onde x =>   x.Id (banco) seja igual ao id vindo do atributo (int id)
+         
         }
 
         public bool Apagar(int id)
