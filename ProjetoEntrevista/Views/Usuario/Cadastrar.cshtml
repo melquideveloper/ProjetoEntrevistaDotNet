@@ -1,0 +1,45 @@
+﻿@model ModelUsuario;
+@{
+    ViewData["Title"] = "Cadastrar Contato"; 
+}
+ <div class="text-center">
+
+    <h1 class="display-4">Cadastro de Usuario</h1>
+
+        <form asp-controller="Usuario" asp-action="Cadastrar" method="post">   <!-- O atributo asp-controller informa quem é Controller que receberá o submit o   asp-action = "Cadastrar"" o método que iratratar a requisição sobre o método method="post" POST -->       
+          <div class="col-md-12">
+            <label>Nome</label>
+            <input type="text" asp-for="Name" class="form-control" id="" >
+             <!--@Html.//ValidationMessageFor(x=>x.Name)   Todo método Html.ValidationMessageFor() aqui, fazEM referência ao DATA_annotation do seu campo espeficifo na classe ModelContato para validação dos campos-->
+          </div>
+           <div class="col-md-12">
+            <label>Login</label>
+            <input type="text" asp-for="Login" class="form-control" id="" >
+           <!-- @Html.//ValidationMessageFor(x=>x.Nome)Todo método Html.ValidationMessageFor() aqui, fazEM referência ao DATA_annotation do seu campo espeficifo na classe ModelContato para validação dos campos-->
+          </div>
+          <div class="col-md-12">
+            <label>Email</label>
+            <input type="text" asp-for="Email" class="form-control" id="emailCadastro"  >           
+            @Html.ValidationMessageFor(x=>x.Email)
+           <span id="errorEmail" style="display:none;color:red;">Digite um email válido</span>
+          </div>          
+          <div class="col-md-12">           
+            <div class="col-md-12">
+            <label for="validationDefaultUsername" class="form-label">Senha</label>              
+            <input type="password" asp-for="Senha" minlength="11" maxlength="11" class="form-control" onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;">      
+             @Html.ValidationMessageFor(x=>x.Senha)           
+            </div>             
+          </div>
+          <div class="col-md-12">
+            <label>Perfil</label>
+            <input type="text" asp-for="Perfil" class="form-control" id="" >
+             <!--@Html.//ValidationMessageFor(x=>x.Name)   Todo método Html.ValidationMessageFor() aqui, fazEM referência ao DATA_annotation do seu campo espeficifo na classe ModelContato para validação dos campos-->
+          </div>
+          <br />        
+          <div class="col-12">
+            <button class="btn btn-success" type="submit" id="btnCadastrar">Cadastrar</button>
+            <a asp-controller="Usuario" asp-action="Index" class="btn btn-danger btn-block">Voltar</a>
+          </div>
+        </form>
+</div>
+     
