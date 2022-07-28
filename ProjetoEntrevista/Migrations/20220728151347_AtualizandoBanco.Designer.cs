@@ -12,8 +12,8 @@ using ProjetoEntrevista.Data;
 namespace ProjetoEntrevista.Migrations
 {
     [DbContext(typeof(BancoDeDados))]
-    [Migration("20220727174846_AtualizarTableCliente")]
-    partial class AtualizarTableCliente
+    [Migration("20220728151347_AtualizandoBanco")]
+    partial class AtualizandoBanco
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,10 +36,10 @@ namespace ProjetoEntrevista.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DataAtualizacao")
+                    b.Property<DateTime?>("DataAtualizacao")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DataCadastro")
+                    b.Property<DateTime>("DataCadastro")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
@@ -84,7 +84,7 @@ namespace ProjetoEntrevista.Migrations
                     b.Property<int>("Perfil")
                         .HasColumnType("int");
 
-                    b.Property<string>("senha")
+                    b.Property<string>("Senha")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

@@ -5,6 +5,10 @@ namespace ProjetoEntrevista.Repositorio
     {
         ModelUsuario Adicionar(ModelUsuario usuer);
 
+        ModelUsuario Remover(int id);
+
+        ModelUsuario BuscarUsuario(int id);
+
         List<ModelUsuario> BuscarUsers();
     }
 }

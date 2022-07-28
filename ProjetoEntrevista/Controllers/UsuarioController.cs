@@ -31,14 +31,36 @@ namespace ProjetoEntrevista.Controllers
             {
                 user.DataCadastro = DateTime.Now; //Incluo aqui a data de catras do usuário uma vez que não vem do form 'cadastrar'
                 _iusuarioRepositorio.Adicionar(user);
-                return View("Index");
+                return RedirectToAction("Index");
             }
             catch(System.Exception erro)
             {
-                throw new NotImplementedException();
+                throw new NotImplementedException(erro.Message);
             }
         }
 
-     
+
+        public IActionResult ApagarConf(int id)
+        {
+            ModelUsuario usuario = _iusuarioRepositorio.BuscarUsuario(id);
+            return View(usuario);
+        }
+
+        public IActionResult Apagar(int id)            
+        {
+            try
+            {
+                ModelUsuario user = _iusuarioRepositorio.Remover(id);
+                TempData["MensagemSucesso"] = "Usuário Removido comsucesso!";
+                return RedirectToAction("Index");
+            }catch(System.Exception erro)
+            {
+                TempData["MensagemErro"] = $"Erro! Não foi possivel remover o Usuario. Detalhe: {erro.Message}";
+                return RedirectToAction("Index");
+            }
+        }
+
+
+
     }
 }

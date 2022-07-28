@@ -17,8 +17,8 @@ namespace ProjetoEntrevista.Models
         [Required(ErrorMessage = "Digite o celular do contato!")]
         [Phone(ErrorMessage = "O celular informado não é válido")]
         public string Celular { get; set; }
-        public DateTime? DataCadastro { get; set; }
-        public DateTime DataAtualizacao { get; set; }
+        public DateTime DataCadastro { get; set; }
+        public DateTime? DataAtualizacao { get; set; }
 
     }
 }
