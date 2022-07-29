@@ -9,6 +9,11 @@
   <ItemGroup>
     <Compile Remove="Models\ContatoModel.cs" />
     <Compile Remove="Views\Usuario\Cadastrar.cs" />
+    <Compile Remove="Views\Usuario\Index1.cshtml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Usuario\Index1.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
