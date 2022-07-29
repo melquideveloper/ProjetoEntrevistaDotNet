@@ -6,24 +6,30 @@ namespace ProjetoEntrevista.Controllers
 {
     public class UsuarioController : Controller
     {
+
+        //Declarando a constante para receber a instância do IUsuarioRepositorio
         public readonly IUsuarioRepositorio _iusuarioRepositorio;
 
+        //Construtor da Classe, que instancia o IUsuarioRepositorio e a seta na nossa constate, a interface tem função de CRUD no bando de dados
         public UsuarioController(IUsuarioRepositorio iusuarioRepositorio)
         {
             _iusuarioRepositorio = iusuarioRepositorio;
         }
 
+        //Método que faz link para VIEW de lista de usuário
         public IActionResult Index()
         {
             List<ModelUsuario> todosUsers= _iusuarioRepositorio.BuscarUsers();
             return View(todosUsers);
         }
 
+        //Método que faz link para VIEW de Cadastro de usuário
         public IActionResult Cadastrar()
         {
             return View();
         }
 
+        //Método que recebe o submit da tela de cadastro de usuário para inserir no banco de dados
         [HttpPost]
         public IActionResult Cadastrar(ModelUsuario user)
         {
@@ -31,21 +37,24 @@ namespace ProjetoEntrevista.Controllers
             {
                 user.DataCadastro = DateTime.Now; //Incluo aqui a data de catras do usuário uma vez que não vem do form 'cadastrar'
                 _iusuarioRepositorio.Adicionar(user);
+                TempData["MensagemSucesso"] = "Usuário Cadastrado comsucesso!";
                 return RedirectToAction("Index");
             }
             catch(System.Exception erro)
             {
-                throw new NotImplementedException(erro.Message);
+                TempData["MensagemErro"] = $"Erro! Não foi possivel Cadastrar o Usuario. Detalhe: {erro.Message}";
+                return RedirectToAction("Index");
             }
         }
 
-
+        //Método que faz link do botão editar da TELA lista de usuário, para moastrar VIEW de CONFIRMAR EXCLUSÃO
         public IActionResult ApagarConf(int id)
         {
             ModelUsuario usuario = _iusuarioRepositorio.BuscarUsuario(id);
             return View(usuario);
         }
 
+        //Método que recebe o submit do botão sim da VIEW de CONFIRMAR EXCLUSÃO, para excluir o usuário
         public IActionResult Apagar(int id)            
         {
             try
@@ -53,11 +62,37 @@ namespace ProjetoEntrevista.Controllers
                 ModelUsuario user = _iusuarioRepositorio.Remover(id);
                 TempData["MensagemSucesso"] = "Usuário Removido comsucesso!";
                 return RedirectToAction("Index");
-            }catch(System.Exception erro)
+            }
+            catch(System.Exception erro)
             {
                 TempData["MensagemErro"] = $"Erro! Não foi possivel remover o Usuario. Detalhe: {erro.Message}";
                 return RedirectToAction("Index");
             }
+        }
+
+        //Método que faz link para VIEW de Edição de usuário
+        public IActionResult Editar(int id)
+        {
+            ModelUsuario user=_iusuarioRepositorio.BuscarUsuario(id);
+            return View(user);
+        }
+
+        //Método que recebe o submit da tela de Edição de usuário para inserir no banco de dados
+        [HttpPost]
+        public IActionResult Editar(ModelUsuario user)
+        {
+            try
+            {
+                _iusuarioRepositorio.Editar(user);
+                TempData["MensagemSucesso"] = "Atualizado com sucesso!";
+                return RedirectToAction("Index");
+            }
+            catch (System.Exception erro)
+            {
+                TempData["MensagemErro"] = $"Não foi possível alterar usuário. Detalhe {erro.Message}";
+                return View();
+            }
+
         }
 
 

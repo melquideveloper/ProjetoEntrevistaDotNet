@@ -9,20 +9,12 @@
      @if(TempData["MensagemSucesso"]!= null)
     {
          <div class="alert alert-success" role="alert">
-             <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+             <button type="button" class="btn btn-success btn-sm close-alert" arial-label="Close">X</button>
              @TempData["MensagemSucesso"]
          </div>
          <script>$('.alert').hide('hide');</script>
     }
-
-      @if(TempData["MensagemErro"]!= null)
-    {
-        <div class="alert alert-danger" role="alert">
-         <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
-          @TempData["MensagemErro"]
-        </div>
     
-    }
     <br/>
 
     <a asp-controller="Usuario" asp-action="Cadastrar" class="btn btn-outline-primary" id="newcontact">Novo Cadastro</a>  <!-- O atributo asp-controller informa quem é Controller que receberá a requisção da ancora <a> e o   asp-action="Cadastrar! o método -->

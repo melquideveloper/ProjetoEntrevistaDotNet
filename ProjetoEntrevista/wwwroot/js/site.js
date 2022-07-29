@@ -3,14 +3,16 @@
 
 // Write your JavaScript code.
 
-//Função para ativação da DATATABLE já traduzido me . col 9 até a 32
+//Função para ativação da DATATABLE que já esta traduzido.
 $(document).ready(function () {
     LoadDataTable('#TableCliente');
     LoadDataTable('#TableUsuario');
-    validaEmail('#emailCliente');
-    validaEmail('#emailUsuario');
+    //linhas responsável por validação de email
+    validaEmail('#emailCliente','#btnCadCliente');
+    validaEmail('#emailUsuario', '#btnCadUser');
 })
 
+//
 function LoadDataTable(id) {
     $(id).DataTable({
         "ordering": true, //ativar e desativa ordenação
@@ -47,22 +49,22 @@ $('.close-alert').click(function () {
     $('.alert').hide('hide');
 })
 
-$('.alert').show(function () {
+/*$('.alert').show(function () {
 
     $('.alert').slideUp(3000).delay(900); 
 
-});
+});*/
 
 //função responsável por validar o email no cadastrado
-function validaEmail(id) {
+function validaEmail(id, btn) {
     $(id).blur(function () {
         var re = /([A-Z0-9a-z_-][^@])+?@[^$#<>?]+?\.com/.test(this.value);
         if (!re) {
             $('#errorEmail').show();
-            $('#btnCadastrar').prop("disabled", true);
+            $(btn).prop("disabled", true);
         } else {
             $('#errorEmail').hide();
-            $('#btnCadastrar').prop("disabled", false);
+            $(btn).prop("disabled", false);
         }
     })
 }

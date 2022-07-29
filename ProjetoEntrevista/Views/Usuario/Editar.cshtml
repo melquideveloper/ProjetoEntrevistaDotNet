@@ -1,31 +1,25 @@
 ﻿@using ProjetoEntrevista.Enum;
 @model ModelUsuario;
 @{
-    ViewData["Title"] = "Cadastrar Usuario"; 
+    ViewData["Title"] = "Edicao de Usuario"; 
 }
  <div class="text-center">
 
-        <h1 class="display-4">Cadastro de Usuario</h1>
-        <br />
-        @if(TempData["MensagemSucesso"]!= null)
-        {
-             <div class="alert alert-success" role="alert">
-                 <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
-                 @TempData["MensagemSucesso"]
-             </div>
-             <script>$('.alert').hide('hide');</script>
-        }
-
-          @if(TempData["MensagemErro"]!= null)
+           @if(TempData["MensagemErro"]!= null)
         {
             <div class="alert alert-danger" role="alert">
              <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
               @TempData["MensagemErro"]
             </div>
     
-        }       
+        }
         <br />
-        <form asp-controller="Usuario" asp-action="Cadastrar" method="post">   <!-- O atributo asp-controller informa quem é Controller que receberá o submit o   asp-action = "Cadastrar"" o método que iratratar a requisição sobre o método method="post" POST -->       
+        <h1 class="display-4">Editar Usuario</h1>
+        <br />       
+        <form asp-controller="Usuario" asp-action="Editar" method="post">   <!-- O atributo asp-controller informa quem é Controller que receberá o submit o   asp-action = "Cadastrar"" o método que iratratar a requisição sobre o método method="post" POST -->       
+
+          <input type="hidden" asp-for="Id" class="form-control"/>
+
           <div class="col-md-12">
             <label>Nome</label>
             <input type="text" asp-for="Name" class="form-control">
@@ -45,7 +39,7 @@
           <div class="col-md-12">           
             <div class="col-md-12">
             <label for="validationDefaultUsername" class="form-label">Senha</label>              
-            <input type="password" asp-for="Senha" minlength="6" class="form-control">      
+            <input type="password" asp-for="Senha" minlength="6" class="form-control" required>      
              @Html.ValidationMessageFor(x=>x.Senha)           
             </div>             
           </div>
@@ -59,7 +53,7 @@
           </div>
           <br />        
           <div class="col-12">
-            <button class="btn btn-success" type="submit" id="btnCadUser">Cadastrar</button>
+            <button class="btn btn-success" type="submit" id="btnEditUser">Salvar</button>
             <a asp-controller="Usuario" asp-action="Index" class="btn btn-danger btn-block">Voltar</a>
           </div>
         </form>

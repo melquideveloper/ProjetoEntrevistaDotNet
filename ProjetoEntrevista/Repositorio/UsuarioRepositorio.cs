@@ -31,6 +31,21 @@ namespace ProjetoEntrevista.Repositorio
             return _bancodedados.Usuarios.FirstOrDefault(x => x.Id == id);
         }
 
+        public ModelUsuario Editar(ModelUsuario usuario)
+        {
+            ModelUsuario usuariodb= BuscarUsuario(usuario.Id);
+            usuariodb.Name = usuario.Name;
+            usuariodb.Email = usuario.Email;
+            usuariodb.Login = usuario.Login;
+            usuariodb.Perfil = usuario.Perfil;
+            usuariodb.Senha = usuario.Senha;
+            usuariodb.DataAtualizacao = DateTime.Now;
+
+            _bancodedados.Usuarios.Update(usuariodb);
+            _bancodedados.SaveChanges();
+            return usuariodb;
+        }
+
         public ModelUsuario Remover(int id)
         {
             ModelUsuario user = BuscarUsuario(id);

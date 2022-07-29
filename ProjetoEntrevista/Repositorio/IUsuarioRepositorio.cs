@@ -10,5 +10,7 @@ namespace ProjetoEntrevista.Repositorio
         ModelUsuario BuscarUsuario(int id);
 
         List<ModelUsuario> BuscarUsers();
+
+        ModelUsuario Editar(ModelUsuario usuario);
     }
 }
