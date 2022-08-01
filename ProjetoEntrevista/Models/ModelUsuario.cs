@@ -13,5 +13,10 @@ namespace ProjetoEntrevista.Models
 
         public DateTime DataCadastro { get; set; }
         public DateTime? DataAtualizacao { get; set; }
+
+        public bool SenhaValida(string senha) //retorna valor booleando se a comparação da senha ...
+        {
+            return Senha == senha; 
+        }
     }
 }

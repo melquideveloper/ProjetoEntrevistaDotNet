@@ -1,8 +1,9 @@
-﻿@{
+﻿@model ModelUsuario;
+@{
     ViewData["Title"] = "Pagina Inicial";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Bem Vindo</h1>
+    <h1 class="display-4">Bem Vindo, @Model.Name</h1>
     <p>Sistema MVC Orientado a objeto!</p>
 </div>

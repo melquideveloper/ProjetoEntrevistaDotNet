@@ -14,6 +14,11 @@ namespace ProjetoEntrevista.Repositorio
             _bancodedados = bancoDeDados;
         }
 
+        public ModelUsuario LoginUsuario(string login)
+        {
+            return _bancodedados.Usuarios.FirstOrDefault(x => x.Login == login);
+        }
+
         public ModelUsuario Adicionar(ModelUsuario user)
         {
             _bancodedados.Usuarios.Add(user);
@@ -55,5 +60,7 @@ namespace ProjetoEntrevista.Repositorio
             _bancodedados.SaveChanges();
             return (user);
         }
+
+      
     }
 }

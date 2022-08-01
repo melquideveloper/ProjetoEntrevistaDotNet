@@ -42,7 +42,7 @@ namespace ProjetoEntrevista
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Login}/{action=Index}/{id?}"); //O {controller=Login} e {action=Index} será o a View exibida na execução do projeto
 
         }
 

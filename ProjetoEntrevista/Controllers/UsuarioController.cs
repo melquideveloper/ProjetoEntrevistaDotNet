@@ -37,13 +37,14 @@ namespace ProjetoEntrevista.Controllers
             {
                 user.DataCadastro = DateTime.Now; //Incluo aqui a data de catras do usuário uma vez que não vem do form 'cadastrar'
                 _iusuarioRepositorio.Adicionar(user);
-                TempData["MensagemSucesso"] = "Usuário Cadastrado comsucesso!";
+                TempData["MensagemSucesso"] = "Usuário cadastrado com sucesso!";
                 return RedirectToAction("Index");
             }
             catch(System.Exception erro)
             {
-                TempData["MensagemErro"] = $"Erro! Não foi possivel Cadastrar o Usuario. Detalhe: {erro.Message}";
-                return RedirectToAction("Index");
+                TempData["MensagemErro"] = $"Erros! {erro.InnerException.Message}";
+                Console.WriteLine(erro.InnerException.Message);
+                return View(user);
             }
         }
 
@@ -65,7 +66,7 @@ namespace ProjetoEntrevista.Controllers
             }
             catch(System.Exception erro)
             {
-                TempData["MensagemErro"] = $"Erro! Não foi possivel remover o Usuario. Detalhe: {erro.Message}";
+                TempData["MensagemErro"] = $"Erro! Não foi possivel remover o Usuario. Detalhe: {erro.InnerException.Message}";
                 return RedirectToAction("Index");
             }
         }
@@ -89,7 +90,7 @@ namespace ProjetoEntrevista.Controllers
             }
             catch (System.Exception erro)
             {
-                TempData["MensagemErro"] = $"Não foi possível alterar usuário. Detalhe {erro.Message}";
+                TempData["MensagemErro"] = $"Não foi possível alterar usuário. Detalhe {erro.InnerException.Message}";
                 return View();
             }
 
