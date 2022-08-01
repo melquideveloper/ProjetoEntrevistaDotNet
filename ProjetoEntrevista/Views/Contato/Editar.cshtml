@@ -5,7 +5,16 @@
  <div class="text-center">
 
     <h1 class="display-4">Editar de Contato</h1>
-
+         <br />
+             @if(TempData["MensagemErro"]!= null)
+            {
+                <div class="alert alert-danger" role="alert">
+                 <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+                  @TempData["MensagemErro"]
+                </div>
+    
+            }
+        <br />
          <form asp-controller="Contato" asp-action="Alterar" method="post">   <!-- O atributo asp-controller informa quem é Controller que receberá o submit o   asp-action = "Cadastrar"" o método que iratratar a requisição sobre o método method="post" POST -->       
              <div>
                 <input type="hidden" asp-for="Id"  /> <!-- Esse tag input do tipo hidden, com asp-fo "Id" é nescerráio para que o Id também seja enviado no POST para a controler Contato -->

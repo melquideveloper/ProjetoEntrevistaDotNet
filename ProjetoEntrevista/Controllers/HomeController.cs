@@ -1,14 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjetoEntrevista.Models;
 using System.Diagnostics;
+using ProjetoEntrevista.Repositorio;
 
 namespace ProjetoEntrevista.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public readonly IUsuarioRepositorio _iusuarioRepositorio;
+
+        public HomeController(IUsuarioRepositorio iusuarioRepositorio)
         {
-            return View();
+            _iusuarioRepositorio = iusuarioRepositorio;
+        }
+
+
+        public IActionResult Index(int id)
+        {
+            ModelUsuario usuario = _iusuarioRepositorio.BuscarUsuario(id);
+            return View(usuario); //Verificar possibilidade de carregar pelo id vindo do LoginController, para carregar numa session!
         }
 
         public IActionResult Privacy()

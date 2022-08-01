@@ -55,7 +55,7 @@ namespace ProjetoEntrevista.Controllers
             }
             catch(System.Exception erro)
             {               
-                TempData["MensagemErro"] = $"Erro ao tentar apagar registro. Tente Novamente! Detalhe: {erro.Message}"; //Essa variável TempData nativa, será acessada na View para que possa exibir a mensagem de sucesso ou de erro.
+                TempData["MensagemErro"] = $"Erro! {erro.InnerException.Message}"; //Essa variável TempData nativa, será acessada na View para que possa exibir a mensagem de sucesso ou de erro.
                 return RedirectToAction("Index");
             }
              
@@ -85,8 +85,8 @@ namespace ProjetoEntrevista.Controllers
             }
             catch (System.Exception erro) //O exception trás os erros da tentativa mal sussedida do try, e então eu coloco a mensagem de erro variável erro
             {
-                TempData["MensagemErro"] = $"Erro! Não foi possivél cadastrar o contato, tente novamente. Detalhe: {erro.Message}"; // o $ no início da string é para possibilitar a concatenação com a variável {erro.Message} 
-                return RedirectToAction("Index");
+                TempData["MensagemErro"] = $"Erro! {erro.InnerException.Message}"; // o $ no início da string é para possibilitar a concatenação com a variável {erro.Message} 
+                return View(contato);
 
             }
            
@@ -108,8 +108,8 @@ namespace ProjetoEntrevista.Controllers
             }
             catch (System.Exception erro)
             {
-                TempData["MensagemErro"] = $"Erro ao tentar atualizar registro. Tente Novamente! Detalhe: {erro.Message}"; //Essa variável TempData nativa, será acessada na View para que possa exibir a mensagem de sucesso ou de erro.
-                return RedirectToAction("Index");
+                TempData["MensagemErro"] = $"Erro! {erro.InnerException.Message}"; //Essa variável TempData nativa, será acessada na View para que possa exibir a mensagem de sucesso ou de erro.
+                return View(contato);
             }
 
 
