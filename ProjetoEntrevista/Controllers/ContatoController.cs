@@ -1,12 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjetoEntrevista.Models;
 using ProjetoEntrevista.Repositorio;
+using ProjetoEntrevista.Filters;
 
 namespace ProjetoEntrevista.Controllers
 {
+    [PaginaParaUsuárioLogado] // Essa invocação da classe que esta na pasta Filters, é para controlar AS ROTAS E checar antes de acessar TODAS AS ROTAS DO USUÁRIO CONTROLER DIGITANDO NA URL, verificar se o usuário é ADMIN
     public class ContatoController : Controller
     {
+        
         private readonly IContatoRepositorio _contatoRepositorio;
+       
 
         /**
          * Construto da classe recebe a instância de IContatoRepositorio
