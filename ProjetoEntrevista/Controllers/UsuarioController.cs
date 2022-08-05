@@ -39,8 +39,7 @@ namespace ProjetoEntrevista.Controllers
         public IActionResult Cadastrar(ModelUsuario user)
         {
             try
-            {
-                user.DataCadastro = DateTime.Now; //Incluo aqui a data de catras do usuário uma vez que não vem do form 'cadastrar'
+            {               
                 _iusuarioRepositorio.Adicionar(user);
                 TempData["MensagemSucesso"] = "Usuário cadastrado com sucesso!";
                 return RedirectToAction("Index");
