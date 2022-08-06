@@ -1,6 +1,7 @@
 ﻿using ProjetoEntrevista.Models;
 using ProjetoEntrevista.Repositorio;
 using ProjetoEntrevista.Data;
+using ProjetoEntrevista.helper;
 
 namespace ProjetoEntrevista.Repositorio
 {
@@ -21,6 +22,8 @@ namespace ProjetoEntrevista.Repositorio
 
         public ModelUsuario Adicionar(ModelUsuario user)
         {
+            user.DataCadastro = DateTime.Now; //Incluo aqui a data de catras do usuário uma vez que não vem do form 'cadastrar'                
+            user.InsiraSenhaComHash(); //Esse método 'InsiraSenhaComHash()' esta dentro da Model, que fará com que a senha já informada pelo usuário e setada lá no model, seja convertida para modo Hash
             _bancodedados.Usuarios.Add(user);
             _bancodedados.SaveChanges();
             return user;
@@ -43,7 +46,7 @@ namespace ProjetoEntrevista.Repositorio
             usuariodb.Email = usuario.Email;
             usuariodb.Login = usuario.Login;
             usuariodb.Perfil = usuario.Perfil;
-            usuariodb.Senha = usuario.Senha;
+            usuariodb.Senha = usuario.Senha.GerarHash();
             usuariodb.DataAtualizacao = DateTime.Now;
 
             _bancodedados.Usuarios.Update(usuariodb);
