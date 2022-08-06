@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProjetoEntrevista.Models;
 using ProjetoEntrevista.Repositorio;
+using ProjetoEntrevista.Enum;
+using ProjetoEntrevista.Filters;
 
 namespace ProjetoEntrevista.Controllers
 {
+    [PaginaRestritaSomenteAdmin] // Essa invocação da classe que esta na pasta Filters, é para controlar o filtro de rota, para checar antes de acessar os método da home, verificar se existe usuário logado, para poder acessalos
     public class UsuarioController : Controller
     {
 
@@ -18,9 +21,11 @@ namespace ProjetoEntrevista.Controllers
 
         //Método que faz link para VIEW de lista de usuário
         public IActionResult Index()
-        {
-            List<ModelUsuario> todosUsers= _iusuarioRepositorio.BuscarUsers();
-            return View(todosUsers);
+        {           
+      
+                List<ModelUsuario> todosUsers = _iusuarioRepositorio.BuscarUsers();
+                return View(todosUsers);
+
         }
 
         //Método que faz link para VIEW de Cadastro de usuário
