@@ -23,6 +23,7 @@ namespace ProjetoEntrevista.Controllers
             return View();
         }
 
+        [HttpPost]
         public IActionResult Logar(ModelUsuario user)
         {
             try
@@ -58,5 +59,35 @@ namespace ProjetoEntrevista.Controllers
             _sessao.RemoverSessaoDousuario();
             return RedirectToAction("Index", "Login");
         }
+
+        public IActionResult RedefinirSenha()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult EvianLinkParaRedefinirSenha(ModelUsuario user)
+        {
+            try
+            {
+                ModelUsuario usuarioDb = _iUsuarioRepositorio.BuscarEmailLogin(user.Login, user.Email);
+                if (usuarioDb.Email == user.Email)
+                {
+                    TempData["MensagemSucesso"] = "Senha Redefinida!";
+                    return View("Index");
+                }
+                else
+                {
+                    TempData["MensagemErro"] = "Usuário Não encotrado";
+                    return View("RedefinirSenha", user);
+                }
+
+            }catch(System.Exception erro)
+            {
+                TempData["MensagemErro"] = $"Erro ao redifir senha {erro.InnerException.Message}";
+                return View("RedefinirSenha", user);
+            }
+        }
+
     }
 }

@@ -1,0 +1,28 @@
+﻿@model ModelUsuario;
+@{
+    Layout = "_LayoutSemlogin"; //Esse descrição do Layout tem que ser identica a descrição criada na pasta View/Shared
+    ViewData["Title"] = "Redefinir Senha";
+}
+ <div class="text-center">
+    @if(TempData["MensagemErro"]!= null)
+        {
+            <div class="alert alert-danger" role="alert">
+                <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+                @TempData["MensagemErro"]
+            </div>
+    
+        }
+
+    <form asp-controller="Login" asp-action="EvianLinkParaRedefinirSenha" method="post">
+      <div class="mb-3 col-md-12">
+        <label for="exampleInputEmail1" class="form-label">Login</label>
+        <input type="text" asp-for="Login" class="form-control" id="" required>
+      </div>
+      <div class="mb-3 col-md-12">
+        <label for="exampleInputPassword1" class="form-label">E-mail</label>
+        <input type="text" asp-for="Email" class="form-control" id="Email" required> 
+      </div>    
+      <a asp-action="Index" class="btn btn-secondary"  asp-controller="Login">Voltar</a>
+      <button type="submit" asp-controller="Login" asp-action="EvianLinkParaRedefinirSenha" class="btn btn-success">Redefinir Senha</button>
+    </form>
+</div>

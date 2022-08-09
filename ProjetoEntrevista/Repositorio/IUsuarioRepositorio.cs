@@ -11,6 +11,8 @@ namespace ProjetoEntrevista.Repositorio
 
         ModelUsuario LoginUsuario(string login);
 
+        ModelUsuario BuscarEmailLogin(string login, string email);
+
         List<ModelUsuario> BuscarUsers();
 
         ModelUsuario Editar(ModelUsuario usuario);

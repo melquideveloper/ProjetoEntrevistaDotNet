@@ -64,6 +64,9 @@ namespace ProjetoEntrevista.Repositorio
             return (user);
         }
 
-      
+        public ModelUsuario BuscarEmailLogin(string login, string email)
+        {
+            return _bancodedados.Usuarios.FirstOrDefault(x => x.Email.ToUpper() == email.ToUpper() && x.Login.ToUpper()==login.ToUpper());  //Essa busca ou 'SELECT' no banco, contempla uma clausula 'WHERE' com dois parâmentros , o LOGIN e o EMAIL (x => x.EMAIL.ToUpper() == EMAIL.ToUpper() && x.LOGIN.ToUpper()==LOGIN.ToUpper())
+        }
     }
 }
