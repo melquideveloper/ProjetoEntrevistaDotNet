@@ -3,6 +3,7 @@ using ProjetoEntrevista.Models;
 using ProjetoEntrevista.Repositorio;
 using ProjetoEntrevista.Enum;
 using ProjetoEntrevista.Filters;
+using ProjetoEntrevista.helper;
 
 namespace ProjetoEntrevista.Controllers
 {
@@ -99,7 +100,6 @@ namespace ProjetoEntrevista.Controllers
             }
 
         }
-
 
 
     }

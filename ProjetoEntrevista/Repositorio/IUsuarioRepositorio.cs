@@ -16,5 +16,7 @@ namespace ProjetoEntrevista.Repositorio
         List<ModelUsuario> BuscarUsers();
 
         ModelUsuario Editar(ModelUsuario usuario);
+
+        ModelUsuario RedefinicaoDeSenhaSendEmaill(ModelUsuario user);
     }
 }

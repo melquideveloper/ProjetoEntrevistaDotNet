@@ -10,11 +10,13 @@ namespace ProjetoEntrevista.Controllers
 
         public readonly IUsuarioRepositorio _iUsuarioRepositorio; // Responsável pelo CRUD no banco de dados 
         public readonly ISessao _sessao; //resposável por gerir a sessão no projeto
+        public readonly IEmail _email;
 
-        public LoginController(IUsuarioRepositorio iUsuarioRepositorio, ISessao sessao)
+        public LoginController(IUsuarioRepositorio iUsuarioRepositorio, ISessao sessao, IEmail email)
         {
             _iUsuarioRepositorio = iUsuarioRepositorio;
             _sessao = sessao;
+            _email = email;
         }
 
         public IActionResult Index()
@@ -72,9 +74,23 @@ namespace ProjetoEntrevista.Controllers
             {
                 ModelUsuario usuarioDb = _iUsuarioRepositorio.BuscarEmailLogin(user.Login, user.Email);
                 if (usuarioDb.Email == user.Email)
-                {
-                    TempData["MensagemSucesso"] = "Senha Redefinida!";
-                    return View("Index");
+                {   
+                    string novasenha=usuarioDb.GerarNovaSenha(); // essa função GerarNovaSenha() foi desenvovlida no ModelUsuario
+                    string mensagem = $"Sua nova senha é: {novasenha}";  //mensagem do corpo de email
+
+                    bool emailEnviado=_email.Enviar(usuarioDb.Email, "Redfinição de Senha", mensagem); // a função _email.Enviar esta na calsse Email na pasta /helper 
+
+                    if (emailEnviado)
+                    {
+                        _iUsuarioRepositorio.RedefinicaoDeSenhaSendEmaill(usuarioDb);
+                        TempData["MensagemSucesso"] = "Enviamos para o seu E-mail de cadastro, seu email e senha!";
+                        return View("Index");
+                    }
+                    else
+                    { 
+                        TempData["MensagemErro"] = "Erro ao enviar email de Redefinição de Senha! Tente novamente!";
+                        return View("RedefinirSenha", user);
+                    }
                 }
                 else
                 {

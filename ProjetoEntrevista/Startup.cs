@@ -24,7 +24,8 @@ namespace ProjetoEntrevista
             services.AddScoped<IContatoRepositorio, ContatoRepositorio>();//A services.AddScoped configura que toda vez que a IContatoRepositorio for chamada será feita "injeção de dependência" em  ContatoRepositorio.                     
             services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();//A services.AddScoped configura que toda vez que a IContatoRepositorio for chamada será feita "injeção de dependência" em  ContatoRepositorio.
             services.AddScoped<ISessao, Sessao>(); //passo 3 para session, A services.AddScoped configura que toda vez que a ISessao for chamada será feita "injeção de dependência" na classe  Sessao.
-            services.AddControllersWithViews().AddRazorRuntimeCompilation(); //Service nescessária para viablizar que o projeto seja alterado e atualizado em tempo de exceução, sem a nescessidade de recompilação.
+            services.AddControllersWithViews().AddRazorRuntimeCompilation(); //Service nescessária para viablizar que o projeto seja alterado e atualizado em tempo de exceução, sem a nescessidade de stop no projeto e start novamente.
+            services.AddScoped<IEmail, Email>(); //A services.AddScoped configura que toda vez que a IEmail for chamada será feita "injeção de dependência" na classe  Sessao.
 
             services.AddSession(o => //passo 4 para session, configurar serviço de cookie
             {
