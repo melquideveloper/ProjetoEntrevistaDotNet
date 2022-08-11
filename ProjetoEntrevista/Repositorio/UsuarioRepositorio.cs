@@ -68,5 +68,15 @@ namespace ProjetoEntrevista.Repositorio
         {
             return _bancodedados.Usuarios.FirstOrDefault(x => x.Email.ToUpper() == email.ToUpper() && x.Login.ToUpper()==login.ToUpper());  //Essa busca ou 'SELECT' no banco, contempla uma clausula 'WHERE' com dois parâmentros , o LOGIN e o EMAIL (x => x.EMAIL.ToUpper() == EMAIL.ToUpper() && x.LOGIN.ToUpper()==LOGIN.ToUpper())
         }
+
+        public ModelUsuario RedefinicaoDeSenhaSendEmaill(ModelUsuario user)
+        {
+             
+                user.DataAtualizacao = DateTime.Now;
+            _bancodedados.Usuarios.Update(user);
+            _bancodedados.SaveChanges();
+            return user;
+
+        }
     }
 }

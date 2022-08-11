@@ -24,5 +24,12 @@ namespace ProjetoEntrevista.Models
         {
             Senha = Senha.GerarHash(); //esse método "GerarHash()" (construido como 'MÉTODO DE EXTENÇÃO') foi incorporado a palavra reservada 'string' do ASP.NET através da classe Criptografia.cs que esta na pasta helper
         }
+
+        public string GerarNovaSenha()
+        {
+            string novaSenha = Guid.NewGuid().ToString().Substring(0, 8); //esse método pega da posição 0 até a 8, os caracteres do Guid gerado randômico
+            Senha = novaSenha.GerarHash(); //insere a nova senha randomica gerada acima no usuário no banco
+            return novaSenha;
+        }
     }
 }
